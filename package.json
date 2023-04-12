@@ -1,0 +1,15 @@
+{
+    "name": "npl-project",
+    "version": "1.0.0",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node src/server/index.js",
+        "build-prov": "webpack --config webpack.prod.js",
+        "build-dev": "webpack-dev-server --config webpack.dev.js --open"
+    },
+    "keywords": [],
+    "author": "Ollivier Anneix",
+    "license": "ISC",
+    "description": ""
+}
