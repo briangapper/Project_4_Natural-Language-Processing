@@ -6,7 +6,7 @@ function handleSubmit(event) {
     checkForName(formText)
 
     console.log('::: Form Submitted :::')
-    fetch('https://localhost:8080/test')
+    fetch('https://localhost:3000/test')
     .then(res => res.json())
     .then(function(res){
         document.getElementsById('results').innerHTML = res.message
