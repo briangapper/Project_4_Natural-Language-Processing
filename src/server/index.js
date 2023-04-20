@@ -1,8 +1,12 @@
 var path = require('path')
 const express = require('express')
+const cors = require('cors')
 const mockAPIResponse = require('./mockAPI.js')
 
 const app = express()
+
+// Add CORS middleware
+app.use(cors())
 
 app.use(express.static('dist'))
 console.log(__dirname)
@@ -18,5 +22,11 @@ app.listen(9000, function(){
 })
 
 app.get('/test', function(req, res){
+    console.log('Test init')
+    let json = {
+        'title': 'test json response',
+        'message': 'this is a message',
+        'time': 'now'
+    }
     res.send(mockAPIResponse)
 })
