@@ -163,9 +163,7 @@ __webpack_require__.r(__webpack_exports__);
 function checkForName(inputText) {
   console.log('::: Running checkForName :::', inputText);
   var names = ['Picard', 'Janeway', 'Kirk', 'Archer', 'Georgiou'];
-  if (names.includes(inputText)) {
-    alert('Welcome, Captain!');
-  }
+  if (names.includes(inputText)) {}
 }
 
 

@@ -8,11 +8,11 @@ const app = express()
 // Add CORS middleware
 app.use(cors())
 
-app.use(express.static('dist'))
+app.use(express.static('dist/prod'))
 console.log(__dirname)
 
 app.get('/', function(req, res){
-    res.sendFile('dist/index.html')
+    res.sendFile('dist/prod/index.html')
     // res.sendFile(path.resolve('src/client/views/index.html'))
 })
 
@@ -22,11 +22,5 @@ app.listen(9000, function(){
 })
 
 app.get('/test', function(req, res){
-    console.log('Test init')
-    let json = {
-        'title': 'test json response',
-        'message': 'this is a message',
-        'time': 'now'
-    }
     res.send(mockAPIResponse)
 })

@@ -7,7 +7,10 @@ module.exports = {
     entry: './src/client/index.js',
     mode: 'development',
     devtool: 'source-map',
+    // Last 2 lines set the output target type and exports the built module as a variable to be used in the browser environment.
+    // In short, it ensures communication between files.  
     output: {
+        path: path.resolve(__dirname, 'dist/dev'),
         libraryTarget: 'var',
         library: 'Client'
     },

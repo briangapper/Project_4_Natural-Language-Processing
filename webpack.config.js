@@ -7,9 +7,14 @@ module.exports = {
     mode: 'development',
     devtool: 'source-map',
     output: {
+        path: path.resolve(__dirname, 'dist/dev'),
         libraryTarget: 'var',
         library: 'Client'
     },
+    devServer:{
+        port: 8000
+    },
+    // stats: 'verbose',
     module: {
        rules: [
            {
