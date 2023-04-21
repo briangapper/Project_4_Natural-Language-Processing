@@ -16,7 +16,9 @@ module.exports = {
     mode: 'production',
     output: {
         path: path.resolve(__dirname, 'dist/prod'),
+        // sets the output target type
         libraryTarget: 'var',
+        // exports the built module as a variable to be used in the browser environment to ensure communication between files
         library: 'Client'
     },
     // Minifies CSS files
@@ -26,12 +28,14 @@ module.exports = {
     module: {
         rules: [
             {
+                 // transforms modern JavaScript code into ECMAScript 5 (ES5) code, which can be run in older browsers
                 test: /\.js$/,
                 exclude: '/node_modules/',
                 loader: 'babel-loader'
             },
             {
-                test: /\.scss$/,
+                // transforms SASS files into nomral CSS files
+                test: /.scss$/,
                 use: [ MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
             }
         ]
