@@ -12,17 +12,22 @@ Typically, NLP programs require far more resources than individuals have access 
 
 ## Getting started
 
-This project contains a build-tool implementation called webpack. For this project to run properly, it is recommended that we first build the project as a build-tool and then run it. To do this, we first need to install all dependencies that are required for this project to function. After navigating to the root directory of the project, enter the following command in your terminal:
+This project contains a build-tool implementation called **webpack**. For this project to run properly, it is recommended that we first build the project as a build-tool and then run it. To do this, we first need to install all dependencies that are required for this project to function. After navigating to the root directory of the project, enter the following command in your terminal:
 ```bash
 npm install
 ```
-It would probably be good to first get your basic project setup and functioning. Follow the steps from the course up to Lesson 4 but don't add Service Workers just yet. We won't need the service workers during development and having extra caches floating around just means there's more potential for confusion. So, fork this repo and begin your project setup.
-
-Remember that once you clone, you will still need to install everything:
-
-`cd` into your new folder and run:
-- `npm install`
-
+Once all packages have been installed, you can perform a test run to make sure everything is working properly. Use the following command in your terminal for the test run:
+```bash
+npm run test
+```
+If the test was successful, it is now time to build our webpack. Use the following command which should create a folder **dist/prod** in your root folder structure together with a *main.js* file.
+```bash
+npm run build-prod
+```
+Now you can start the server, open a browser and connect to *http://localhost:9000*. To start the server, type the following command in your terminal:
+```bash
+npm run start
+```
 ## Setting up the API
 
 The Aylien API is perhaps different than what you've used before. It has you install a node module to run certain commands through, it will simplify the requests we need to make from our node/express backend.
