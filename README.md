@@ -1,25 +1,21 @@
-# Project Instructions
+# Natural-Language-Processing WebApp
 
-This repo is your starter code for the project. It is the same as the starter code we began with in lesson 2. Install and configure Webpack just as we did in the course. Feel free to refer to the course repo as you build this one, and remember to make frequent commits and to create and merge branches as necessary!
+## Description
 
-The goal of this project is to give you practice with:
-- Setting up Webpack
-- Sass styles
-- Webpack Loaders and Plugins
-- Creating layouts and page design
-- Service workers
-- Using APIs and creating requests to external urls
-
-On top of that, I want to introduce you to the topic of Natural Language Processing. NLPs leverage machine learning and deep learning create a program that can interpret natural human speech. Systems like Alexa, Google Assistant, and many voice interaction programs are well known to us, but understanding human speech is an incredibly difficult task and requires a lot of resources to achieve. Full disclosure, this is the Wikipedia definition, but I found it to be a clear one:
+This website uses Natural Language Processing (NLP) technology to evaluate the sentiment of a text. The user has the possibility to pass a URL that leads to a blog or more generally to any text, which is then evaluated. NLP is a technology that can interpret natural human speech. Systems like Alexa, Google Assistant, and many voice interaction programs are well known to us. Understanding human speech is an incredibly difficult task and requires a lot of resources to achieve. Wikipedia defines NLP as following:
 
 > Natural language processing (NLP) is a subfield of computer science, information engineering, and artificial intelligence
 concerned with the interactions between computers and human (natural) languages, in particular how to program computers to
 process and analyze large amounts of natural language data.
 
-You could spend years and get a masters degree focusing on the details of creating NLP systems and algorithms. Typically, NLP programs require far more resources than individuals have access to, but a fairly new API called Aylien has put a public facing API in front of their NLP system. We will use it in this project to determine various attributes of an article or blog post.
+Typically, NLP programs require far more resources than individuals have access to. The MeaningCloud platform has put a public facing API in front of their NLP system. This project uses it to determine various attributes of an article, blog post, or other form of text-based content.
 
 ## Getting started
 
+This project contains a build-tool implementation called webpack. For this project to run properly, it is recommended that we first build the project as a build-tool and then run it. To do this, we first need to install all dependencies that are required for this project to function. After navigating to the root directory of the project, enter the following command in your terminal:
+```bash
+npm install
+```
 It would probably be good to first get your basic project setup and functioning. Follow the steps from the course up to Lesson 4 but don't add Service Workers just yet. We won't need the service workers during development and having extra caches floating around just means there's more potential for confusion. So, fork this repo and begin your project setup.
 
 Remember that once you clone, you will still need to install everything:
