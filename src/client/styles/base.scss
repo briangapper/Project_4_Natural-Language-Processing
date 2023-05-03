@@ -4,6 +4,10 @@ body {
     min-height: 100vh;
 }
 
+p{
+    font-weight: bold;
+}
+
 main {
     flex: 2;
 }
@@ -11,4 +15,4 @@ main {
 section {
     max-width: 800px;
     margin: 50px auto;
-}
+} 

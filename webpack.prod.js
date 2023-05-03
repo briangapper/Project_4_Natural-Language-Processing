@@ -2,6 +2,8 @@ const path = require('path');
 const webpack = require('webpack');
 // Simplifies process of creating HTML files to serve webpack bundles
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+// Ensures that only the used files will be generated in the output directory
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 // Extracts CSS into separate files
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 // Minifies JS files
@@ -9,7 +11,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 //Minifies CSS files
 const CSSMinimizerWebpackPlugin = require('css-minimizer-webpack-plugin');
 // Generate service worker for web application
-const WorkboxPlugin = require('workbox-webpack-plugin');
+// const WorkboxPlugin = require('workbox-webpack-plugin');
 
 module.exports = {
     entry: './src/client/index.js',
@@ -48,6 +50,7 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename: '[name].css'
         }),
-        new WorkboxPlugin.GenerateSW({})
+        // new WorkboxPlugin.GenerateSW({}),
+        new CleanWebpackPlugin()
     ]
 };

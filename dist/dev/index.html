@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8">
         <title>Test</title>
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <script defer src="main.js"></script></head>
 
     <body>
@@ -18,15 +19,29 @@
 
         <main>
             <section>
-                <form class="" onsubmit="return Client.handleSubmit(event)">
-                    <input id="name" type="text" name="input" value="" onblur="" placeholder="Name">
-                    <input type="submit" name="" value="submit" onclick="return Client.handleSubmit(event)" onsubmit="return handleSubmit(event)">
+                <form class="" onsubmit="return Client.getSentimentData(event)">
+                    <input id="url" type="text" name="input" value="" placeholder="URL to be analyzed">
+                    <input type="submit" name="" value="Analyze" onclick="return Client.getSentimentData(event)">
                 </form>
             </section>
 
             <section>
-                <strong>Form Results:</strong>
-                <div id="results"></div>
+                
+                <p>Status: </p>
+                <div id="status"></div><br>
+
+                <p> Polarity: </p>
+                <div id="polarity"></div><br>
+
+                <p>Subjectivity:</p>
+                <div id="subjectivity"></div><br>
+
+                <p>Confidence:</p>
+                <div id="confidence"></div><br>
+
+                <p>Text:</p>
+                <div id="text"></div><br>
+
             </section>
         </main>
 
@@ -34,5 +49,15 @@
             <p>This is a footer</p>
         </footer>
 
+        <script>
+            // Check that service workers are supported
+            // if ('serviceWorker' in navigator) {
+                // Use the window load event to keep the page load performant
+                // window.addEventListener('load', () => {
+                    // navigator.serviceWorker.register('/service-worker.js');
+                // });
+            // }
+        </script>
+        
     </body>
 </html>

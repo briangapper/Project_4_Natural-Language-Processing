@@ -1,19 +1,60 @@
-function handleSubmit(event) {
-    event.preventDefault()
+// Define port and server paths
+const port = 9000;
+const pathGetData = `http://localhost:${port}/meaningCloud`;
+
+// function getSentimentData: makes GET server request to fetch URL to API 
+async function getSentimentData(event) {
+    event.preventDefault();
 
     // check what text was put into the form field
-    let formText = document.getElementById('name').value
-    Client.checkForName(formText)
+    let inputURL = document.getElementById('url').value.trim();
+    let check = Client.checkForURL(inputURL);
 
-    console.log('::: Form Submitted :::')
-    fetch('http://localhost:9000/test')
-    .then(res => res.json())
-    .then(function(res){
-        document.getElementById('results').innerHTML = res.message
-        console.log('Message:', res)
-    })
+    if (check == true){
+
+        console.log('inputURL: ', inputURL)
+
+        try {
+
+            console.log('Starting fetch')
+
+            let result = await fetch(pathGetData, {
+                method: 'POST',
+                credentials: 'same-origin',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({url: inputURL})
+            });
+
+            let data = await result.json()
+    
+            console.log('Result: ', data)
+            
+            document.getElementById('status').innerHTML = data.status
+            document.getElementById('polarity').innerHTML = data.polarity
+            document.getElementById('subjectivity').innerHTML = data.subjectivity
+            document.getElementById('confidence').innerHTML = data.confidence
+            document.getElementById('text').innerHTML = data.text
+    
+        } catch(error) {
+    
+            console.log('ERROR function getSentimentData: ', error)
+        
+        } finally {
+    
+            console.log('END function getSentimentData')
+    
+        }
+
+    } else {
+
+        alert('Please enter a valid URL!')
+        return;
+
+    }
 }
 
 export {
-    handleSubmit
+    getSentimentData
 }
