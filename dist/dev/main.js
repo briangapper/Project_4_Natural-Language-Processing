@@ -136,8 +136,10 @@ __webpack_require__.r(__webpack_exports__);
 function checkForURL(url) {
   var check = false;
   if (!url) {
+    console.log('inputURL is wrong!');
     return check;
   } else {
+    console.log('inputURL is valid!');
     check = true;
     return check;
   }
@@ -180,14 +182,13 @@ function _getSentimentData() {
           inputURL = document.getElementById('url').value.trim();
           check = Client.checkForURL(inputURL);
           if (!(check == true)) {
-            _context.next = 30;
+            _context.next = 29;
             break;
           }
-          console.log('::: Request Submitted :::');
           console.log('inputURL: ', inputURL);
-          console.log('Hello');
-          _context.prev = 7;
-          _context.next = 10;
+          _context.prev = 5;
+          console.log('Starting fetch');
+          _context.next = 9;
           return fetch(pathGetData, {
             method: 'POST',
             credentials: 'same-origin',
@@ -195,14 +196,14 @@ function _getSentimentData() {
               'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-              inputURL: inputURL
+              url: inputURL
             })
           });
-        case 10:
+        case 9:
           result = _context.sent;
-          _context.next = 13;
+          _context.next = 12;
           return result.json();
-        case 13:
+        case 12:
           data = _context.sent;
           console.log('Result: ', data);
           document.getElementById('status').innerHTML = data.status;
@@ -210,27 +211,27 @@ function _getSentimentData() {
           document.getElementById('subjectivity').innerHTML = data.subjectivity;
           document.getElementById('confidence').innerHTML = data.confidence;
           document.getElementById('text').innerHTML = data.text;
-          _context.next = 25;
+          _context.next = 24;
           break;
-        case 22:
-          _context.prev = 22;
-          _context.t0 = _context["catch"](7);
+        case 21:
+          _context.prev = 21;
+          _context.t0 = _context["catch"](5);
           console.log('ERROR function getSentimentData: ', _context.t0);
-        case 25:
-          _context.prev = 25;
+        case 24:
+          _context.prev = 24;
           console.log('END function getSentimentData');
-          return _context.finish(25);
-        case 28:
-          _context.next = 32;
+          return _context.finish(24);
+        case 27:
+          _context.next = 31;
           break;
-        case 30:
+        case 29:
           alert('Please enter a valid URL!');
           return _context.abrupt("return");
-        case 32:
+        case 31:
         case "end":
           return _context.stop();
       }
-    }, _callee, null, [[7, 22, 25, 28]]);
+    }, _callee, null, [[5, 21, 24, 27]]);
   }));
   return _getSentimentData.apply(this, arguments);
 }
@@ -257,7 +258,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "body {\n  display: flex;\n  flex-direction: column;\n  min-height: 100vh; }\n\nmain {\n  flex: 2; }\n\nsection {\n  max-width: 800px;\n  margin: 50px auto; }\n", "",{"version":3,"sources":["webpack://./src/client/styles/base.scss"],"names":[],"mappings":"AAAA;EACI,aAAa;EACb,sBAAsB;EACtB,iBAAiB,EAAA;;AAGrB;EACI,OAAO,EAAA;;AAGX;EACI,gBAAgB;EAChB,iBAAiB,EAAA","sourcesContent":["body {\r\n    display: flex;\r\n    flex-direction: column;\r\n    min-height: 100vh;\r\n}\r\n\r\nmain {\r\n    flex: 2;\r\n}\r\n\r\nsection {\r\n    max-width: 800px;\r\n    margin: 50px auto;\r\n}"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "body {\n  display: flex;\n  flex-direction: column;\n  min-height: 100vh; }\n\np {\n  font-weight: bold; }\n\nmain {\n  flex: 2; }\n\nsection {\n  max-width: 800px;\n  margin: 50px auto; }\n", "",{"version":3,"sources":["webpack://./src/client/styles/base.scss"],"names":[],"mappings":"AAAA;EACI,aAAa;EACb,sBAAsB;EACtB,iBAAiB,EAAA;;AAGrB;EACI,iBAAiB,EAAA;;AAGrB;EACI,OAAO,EAAA;;AAGX;EACI,gBAAgB;EAChB,iBAAiB,EAAA","sourcesContent":["body {\r\n    display: flex;\r\n    flex-direction: column;\r\n    min-height: 100vh;\r\n}\r\n\r\np{\r\n    font-weight: bold;\r\n}\r\n\r\nmain {\r\n    flex: 2;\r\n}\r\n\r\nsection {\r\n    max-width: 800px;\r\n    margin: 50px auto;\r\n} "],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
