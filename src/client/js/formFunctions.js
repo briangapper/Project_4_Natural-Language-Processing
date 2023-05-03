@@ -1,22 +1,11 @@
-// function checkForURL: check is URL is empty
-function checkForURL(url){
-    
-    let check = false
+// function isValidURL: check if URL has a valid format
+function isValidURL(url){
 
-    if(!url){
-
-        console.log('inputURL is wrong!')
-        return check;
-
-    } else {
-
-        console.log('inputURL is valid!')
-        check = true;
-        return check;
-        
-    }
+    const regex = /^(http(s)?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
+    return regex.test(url);
+          
 }
 
 export {
-    checkForURL
+    isValidURL
 }

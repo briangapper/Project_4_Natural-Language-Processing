@@ -6,13 +6,22 @@ const pathGetData = `http://localhost:${port}/meaningCloud`;
 async function getSentimentData(event) {
     event.preventDefault();
 
-    // check what text was put into the form field
+    // Get user URL input
     let inputURL = document.getElementById('url').value.trim();
-    let check = Client.checkForURL(inputURL);
+    console.log('inputURL: ', inputURL);
 
-    if (check == true){
+    // check if URL is empty
+    if(!inputURL){
 
-        console.log('inputURL: ', inputURL)
+        alert('Please enter a URL!')
+        return
+
+    }
+
+    // check if URL has a valid format
+    let check = Client.isValidURL(inputURL);
+
+    if(check == true){
 
         try {
 
@@ -28,7 +37,7 @@ async function getSentimentData(event) {
             });
 
             let data = await result.json()
-    
+
             console.log('Result: ', data)
             
             document.getElementById('status').innerHTML = data.status
@@ -36,21 +45,26 @@ async function getSentimentData(event) {
             document.getElementById('subjectivity').innerHTML = data.subjectivity
             document.getElementById('confidence').innerHTML = data.confidence
             document.getElementById('text').innerHTML = data.text
-    
+
         } catch(error) {
-    
+
             console.log('ERROR function getSentimentData: ', error)
+
+            document.getElementById('status').innerHTML = "Request didn't work"
+            document.getElementById('polarity').innerHTML = ''
+            document.getElementById('subjectivity').innerHTML = ''
+            document.getElementById('confidence').innerHTML = ''
+            document.getElementById('text').innerHTML = ''
         
         } finally {
-    
+
             console.log('END function getSentimentData')
-    
+
         }
 
     } else {
 
         alert('Please enter a valid URL!')
-        return;
 
     }
 }

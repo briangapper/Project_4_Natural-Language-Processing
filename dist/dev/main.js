@@ -130,19 +130,12 @@ module.exports = function (item) {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "checkForURL": () => (/* binding */ checkForURL)
+/* harmony export */   "isValidURL": () => (/* binding */ isValidURL)
 /* harmony export */ });
-// function checkForURL: check is URL is empty
-function checkForURL(url) {
-  var check = false;
-  if (!url) {
-    console.log('inputURL is wrong!');
-    return check;
-  } else {
-    console.log('inputURL is valid!');
-    check = true;
-    return check;
-  }
+// function isValidURL: check if URL has a valid format
+function isValidURL(url) {
+  var regex = /^(http(s)?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
+  return regex.test(url);
 }
 
 
@@ -178,17 +171,27 @@ function _getSentimentData() {
         case 0:
           event.preventDefault();
 
-          // check what text was put into the form field
+          // Get user URL input
           inputURL = document.getElementById('url').value.trim();
-          check = Client.checkForURL(inputURL);
-          if (!(check == true)) {
-            _context.next = 29;
+          console.log('inputURL: ', inputURL);
+
+          // check if URL is empty
+          if (inputURL) {
+            _context.next = 6;
             break;
           }
-          console.log('inputURL: ', inputURL);
-          _context.prev = 5;
+          alert('Please enter a URL!');
+          return _context.abrupt("return");
+        case 6:
+          // check if URL has a valid format
+          check = Client.isValidURL(inputURL);
+          if (!(check == true)) {
+            _context.next = 37;
+            break;
+          }
+          _context.prev = 8;
           console.log('Starting fetch');
-          _context.next = 9;
+          _context.next = 12;
           return fetch(pathGetData, {
             method: 'POST',
             credentials: 'same-origin',
@@ -199,11 +202,11 @@ function _getSentimentData() {
               url: inputURL
             })
           });
-        case 9:
-          result = _context.sent;
-          _context.next = 12;
-          return result.json();
         case 12:
+          result = _context.sent;
+          _context.next = 15;
+          return result.json();
+        case 15:
           data = _context.sent;
           console.log('Result: ', data);
           document.getElementById('status').innerHTML = data.status;
@@ -211,27 +214,31 @@ function _getSentimentData() {
           document.getElementById('subjectivity').innerHTML = data.subjectivity;
           document.getElementById('confidence').innerHTML = data.confidence;
           document.getElementById('text').innerHTML = data.text;
-          _context.next = 24;
+          _context.next = 32;
           break;
-        case 21:
-          _context.prev = 21;
-          _context.t0 = _context["catch"](5);
-          console.log('ERROR function getSentimentData: ', _context.t0);
         case 24:
           _context.prev = 24;
+          _context.t0 = _context["catch"](8);
+          console.log('ERROR function getSentimentData: ', _context.t0);
+          document.getElementById('status').innerHTML = "Request didn't work";
+          document.getElementById('polarity').innerHTML = '';
+          document.getElementById('subjectivity').innerHTML = '';
+          document.getElementById('confidence').innerHTML = '';
+          document.getElementById('text').innerHTML = '';
+        case 32:
+          _context.prev = 32;
           console.log('END function getSentimentData');
-          return _context.finish(24);
-        case 27:
-          _context.next = 31;
+          return _context.finish(32);
+        case 35:
+          _context.next = 38;
           break;
-        case 29:
+        case 37:
           alert('Please enter a valid URL!');
-          return _context.abrupt("return");
-        case 31:
+        case 38:
         case "end":
           return _context.stop();
       }
-    }, _callee, null, [[5, 21, 24, 27]]);
+    }, _callee, null, [[8, 24, 32, 35]]);
   }));
   return _getSentimentData.apply(this, arguments);
 }
@@ -987,8 +994,8 @@ var __webpack_exports__ = {};
   \*****************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "checkForURL": () => (/* reexport safe */ _js_formFunctions__WEBPACK_IMPORTED_MODULE_0__.checkForURL),
-/* harmony export */   "getSentimentData": () => (/* reexport safe */ _js_formHandler__WEBPACK_IMPORTED_MODULE_1__.getSentimentData)
+/* harmony export */   "getSentimentData": () => (/* reexport safe */ _js_formHandler__WEBPACK_IMPORTED_MODULE_1__.getSentimentData),
+/* harmony export */   "isValidURL": () => (/* reexport safe */ _js_formFunctions__WEBPACK_IMPORTED_MODULE_0__.isValidURL)
 /* harmony export */ });
 /* harmony import */ var _js_formFunctions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./js/formFunctions */ "./src/client/js/formFunctions.js");
 /* harmony import */ var _js_formHandler__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./js/formHandler */ "./src/client/js/formHandler.js");

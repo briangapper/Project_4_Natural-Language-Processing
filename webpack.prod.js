@@ -11,7 +11,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 //Minifies CSS files
 const CSSMinimizerWebpackPlugin = require('css-minimizer-webpack-plugin');
 // Generate service worker for web application
-// const WorkboxPlugin = require('workbox-webpack-plugin');
+const WorkboxPlugin = require('workbox-webpack-plugin');
 
 module.exports = {
     entry: './src/client/index.js',
@@ -50,7 +50,7 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename: '[name].css'
         }),
-        // new WorkboxPlugin.GenerateSW({}),
+        new WorkboxPlugin.GenerateSW({}),
         new CleanWebpackPlugin()
     ]
 };
