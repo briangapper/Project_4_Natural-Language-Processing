@@ -75,14 +75,9 @@ app.post('/meaningCloud', getSentimentData);
 // 4.1) getSentimentData callback function 
 async function getSentimentData(req, res){
 
-    console.log(req.body)
+    console.log('Body: ', req.body)
 
     const url = req.body.url;
-
-    if(!url){
-        res.status(400).send('URL is required');
-        return
-    };
 
     const api_url = `https://api.meaningcloud.com/sentiment-2.1?key=${process.env.API_KEY}&lang=en&url=${url}`;
     const response = await fetch(api_url);
