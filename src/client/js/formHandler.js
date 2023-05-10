@@ -1,31 +1,43 @@
-// Define port and server paths
+// ********************************************************************************
+// --------------------------------------------------------------------------------
+// 0.) IMPORTS
+// --------------------------------------------------------------------------------
+// ********************************************************************************
+import { isValidURL } from './formFunctions'
+
+// ********************************************************************************
+// --------------------------------------------------------------------------------
+// 1.) VARIABLES
+// --------------------------------------------------------------------------------
+// ********************************************************************************
 const port = 9000;
 const pathGetData = `http://localhost:${port}/meaningCloud`;
 
-// function getSentimentData: makes GET server request to fetch URL to API 
+// ********************************************************************************
+// --------------------------------------------------------------------------------
+// 2.) FUNCTIONS
+// --------------------------------------------------------------------------------
+// ********************************************************************************
+
+// --------------------------------------------------------------------------------
+// 2.1) function getSentimentData: makes POST server request to fetch URL to API
+// --------------------------------------------------------------------------------
 async function getSentimentData(event) {
+
+    // prevent default behavior
     event.preventDefault();
 
     // Get user URL input
     let inputURL = document.getElementById('url').value.trim();
-    console.log('inputURL: ', inputURL);
+    console.log('User Input URL: ', inputURL);
 
     // check if URL is empty
-    if(!inputURL){
-
-        alert('Please enter a URL!')
-        return
-
-    }
+    if(!inputURL){ return alert('Please enter a URL!') }
 
     // check if URL has a valid format
-    let check = Client.isValidURL(inputURL);
-
-    if(check == true){
+    if(isValidURL(inputURL)){
 
         try {
-
-            console.log('Starting fetch')
 
             let result = await fetch(pathGetData, {
                 method: 'POST',
@@ -38,7 +50,7 @@ async function getSentimentData(event) {
 
             let data = await result.json()
 
-            console.log('Result: ', data)
+            console.log('MeaningCloud Response: ', data)
             
             document.getElementById('status').innerHTML = data.status
             document.getElementById('polarity').innerHTML = data.polarity
@@ -48,24 +60,13 @@ async function getSentimentData(event) {
 
         } catch(error) {
 
-            console.log('ERROR function getSentimentData: ', error)
-
             document.getElementById('status').innerHTML = "Request didn't work"
-            document.getElementById('polarity').innerHTML = ''
-            document.getElementById('subjectivity').innerHTML = ''
-            document.getElementById('confidence').innerHTML = ''
-            document.getElementById('text').innerHTML = ''
+            console.log('ERROR function getSentimentData: ', error)
         
-        } finally {
-
-            console.log('END function getSentimentData')
-
         }
 
     } else {
-
-        alert('Please enter a valid URL!')
-
+        return alert('Please enter a valid URL!')
     }
 }
 
